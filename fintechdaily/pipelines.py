@@ -13,7 +13,8 @@ class FintechdailyPipeline(object):
     def process_item(self, item, spider):
         file_date = time.strftime('%Y%m%d', time.localtime(time.time()))
         file_name = file_date + item['origin_url'].split('/')[-1]
-        urllib.request.urlretrieve(item['origin_url'], settings.IMAGES_STORE + '/' + file_name)
+        urllib.request.urlretrieve(item['origin_url'], settings.POST_STORE + '/' + file_name)
+        item['post_url'] = settings.POST_HOST + '/' + settings.POST_PATH + '/' + file_name
         self.insert_item(item)
         return item
 
@@ -23,7 +24,7 @@ class FintechdailyPipeline(object):
         cursor = db.cursor()
         sql = "INSERT INTO fintech_daily(title, media_source, post_time, origin_url, post_url) \
                 VALUES ('%s', '%s','%s', '%s', '%s')" % \
-              (item['title'], item['media_source'], item['post_time'], item['origin_url'], item['post_url'], item)
+              (item['title'], item['media_source'], item['post_time'], item['origin_url'], item['post_url'])
         try:
             cursor.execute(sql)
             db.commit()

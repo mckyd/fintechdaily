@@ -91,8 +91,9 @@ HTTPCACHE_DIR = 'httpcache'
 HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-IMAGES_STORE = '/Users/wywy/Documents/fintechdaily'
-IMAGES_PATH = 'fintechdaily'
+POST_STORE = '/Library/WebServer/Documents/cebnet_fintechdaily'
+POST_PATH = 'cebnet_fintechdaily'
+POST_HOST = 'http://localhost'
 
 # MySQL connection
 DATABASE_HOST = '127.0.0.1'
